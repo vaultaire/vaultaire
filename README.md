@@ -3,7 +3,7 @@
 [![Coverage Status](https://img.shields.io/codecov/c/github/vaultaire/vaultaire/main.svg?style=flat-square)](https://codecov.io/gh/vaultaire/vaultaire/branch/main)
 [![Download Status](https://img.shields.io/npm/dm/vaultaire.svg?style=flat-square)](https://www.npmjs.com/package/vaultaire)
 
-A client for the HTTP API of HashiCorp's [Vault](https://www.vaultproject.io/) written for Node.js. Maintained fork of the [node-vault](https://github.com/nodevault/node-vault) project.
+A client for the HTTP API of HashiCorp's [Vault] written for Node.js. Maintained fork of the [node-vault](https://github.com/nodevault/node-vault) project.
 
 
 ## Install
@@ -12,17 +12,6 @@ make sure to use node.js version >= 12
     npm install vaultaire
     pnpm install vaultaire
     yarn install vaultaire
-
-
-## Test
-
-Run tests inside docker to do also nice integration testing:
-
-    docker-compose up -d vault
-    pnpm test
-
-This will create containers for vault and running the tests.
-
 
 ## Usage
 
@@ -59,14 +48,24 @@ vault.write('secret/hello', { value: 'world', lease: '1s' })
 .catch(console.error);
 ```
 
+
+## Test
+
+Run tests inside docker to do also nice integration testing:
+
+    docker-compose up -d vault
+    pnpm test
+
+This will create containers for vault and running the tests.
+
+
 ## Docs
 Just generate [docco] docs via `pnpm run docs`.
-
 
 ## Examples
 Please have a look at the [examples] and the generated [feature list] to see what is already implemented.
 
-Instead of installing all the dependencies like vault itself, postgres and other stuff you can
+Instead of installing all the dependencies like vault itself and other stuff you can
 use [docker] and [docker-compose] to link and run multiple docker containers with all of its dependencies.
 
 ```bash
@@ -91,9 +90,6 @@ Now you are able to run all of the other [examples]:
 ```bash
 node example/policies.js
 ```
-
-
-[![Backers](https://opencollective.com/node-vault/tiers/backers.svg?avatarHeight=80&width=600)](https://opencollective.com/node-vault/contribute)
 
 [examples]: https://github.com/vaultaire/vaultaire/tree/main/example
 [docker-compose.yml]: https://github.com/vaultaire/vaultaire/tree/main/docker-compose.yml

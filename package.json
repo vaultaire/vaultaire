@@ -15,8 +15,8 @@
     "posttest": "nyc report --reporter=json",
     "test:unit": "mocha test/unit.js",
     "test:watch": "mocha --watch",
-    "docs": "node scripts/write-features.js && docco --output docs src/*.js",
-    "precommit": "node scripts/write-features.js && git add features.md"
+    "docs": "node --es-module-specifier-resolution=node scripts/write-features.js && cd src && docco --output ../docs *.js",
+    "precommit": "node --es-module-specifier-resolution=node scripts/write-features.js && git add features.md"
   },
   "dependencies": {
     "axios": "0.26.1",

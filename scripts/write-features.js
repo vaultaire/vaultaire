@@ -1,8 +1,8 @@
 import fs from "fs";
-import commands from "../src/commands";
+import Commands from "../src/commands";
 
-const result = Object.keys(commands).map(name => {
-  const command = commands[name];
+const result = Object.keys(Commands).map(name => {
+  const command = Commands[name];
 
   return `
 ## vault.${name}
