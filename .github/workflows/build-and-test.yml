@@ -25,6 +25,17 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
+    - name: Generate Type definitions
+      if: ${{ matrix.node-version == '18.x' }} # only check for one version
+      run: |
+        pnpm run generate
+        if ! git diff --quiet
+        then
+          echo "The index.d.ts file has changed probably due to changes in 'src/commands.js'."
+          echo "Please run 'pnpm run generate' and commit changes in 'index.d.ts'"
+          echo "::error file=index.d.ts,line=1,col=1::The index.d.ts file has changed by running 'pnpm run generate'. Please run the command locally and commit the changed files."
+          exit 1
+        fi
     - name: Lint
       run: |
         pnpm run lint

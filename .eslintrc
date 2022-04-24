@@ -11,5 +11,17 @@
     "es6": true,
     "commonjs": true,
     "mocha": true
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.d.ts"],
+      "plugins": [
+        "@typescript-eslint"
+      ],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+      ]
+    }
+  ]
 }
