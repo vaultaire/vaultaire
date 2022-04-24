@@ -9,15 +9,19 @@ A client for the HTTP API of HashiCorp's [Vault] written for Node.js. Maintained
 ## Install
 make sure to use node.js version >= 12
 
-    npm install vaultaire
-    pnpm install vaultaire
-    yarn install vaultaire
+```bash
+npm install vaultaire
+pnpm install vaultaire
+yarn install vaultaire
+```
 
 ## Usage
 
 ### Init and unseal
 
 ```typescript
+const voltaire = require("vaultaire")
+
 var options = {
   apiVersion: 'v1', // default
   endpoint: 'http://127.0.0.1:8200', // default
@@ -25,7 +29,7 @@ var options = {
 };
 
 // get new instance of the client
-var vault = require("vaultaire")(options);
+var vault = voltaire(options);
 
 // init vault server
 vault.init({ secret_shares: 1, secret_threshold: 1 })
@@ -53,8 +57,10 @@ vault.write('secret/hello', { value: 'world', lease: '1s' })
 
 Run tests inside docker to do also nice integration testing:
 
-    docker-compose up -d vault
-    pnpm test
+```bash
+docker-compose up -d vault
+pnpm test
+```
 
 This will create containers for vault and running the tests.
 
