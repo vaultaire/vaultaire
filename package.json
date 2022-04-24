@@ -15,6 +15,7 @@
     "posttest": "nyc report --reporter=json",
     "test:unit": "mocha test/unit.js",
     "test:watch": "mocha --watch",
+    "example": "node --es-module-specifier-resolution=node ",
     "docs": "node --es-module-specifier-resolution=node scripts/write-features.js && cd src && docco --output ../docs *.js",
     "precommit": "node --es-module-specifier-resolution=node scripts/write-features.js && git add features.md"
   },
