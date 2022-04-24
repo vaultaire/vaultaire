@@ -1,34 +1,34 @@
 // file: example/mount_postgresql.js
 
-import NodeVault from "./../src/index";
+const NodeVault = require("./../src/index")
 
-process.env.DEBUG = 'vaultaire'; // switch on debug mode
+process.env.DEBUG = 'vaultaire' // switch on debug mode
 
-const vault = NodeVault();
+const vault = NodeVault()
 
-const connection = 'postgresql://root:test@postgres:5432/postgres?sslmode=disable';
+const connection = 'postgresql://root:test@postgres:5432/postgres?sslmode=disable'
 
 const query = "CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID " +
-"UNTIL '{{expiration}}'; GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";";
+"UNTIL '{{expiration}}'; GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";"
 
 const configure = () => vault.write('postgresql/config/lease', { lease: '1h', lease_max: '24h' })
-  .then(() => vault.write('postgresql/config/connection', { value: connection }));
+  .then(() => vault.write('postgresql/config/connection', { value: connection }))
 
-const createRole = () => vault.write('postgresql/roles/readonly', { sql: query });
-const getCredentials = () => vault.read('postgresql/creds/readonly');
+const createRole = () => vault.write('postgresql/roles/readonly', { sql: query })
+const getCredentials = () => vault.read('postgresql/creds/readonly')
 
 const run = () => configure()
   .then(createRole)
   .then(getCredentials)
-  .then(console.log);
+  .then(console.log)
 
 vault.mounts()
 .then((result) => {
-  if (Object.hasOwn(result, 'postgresql/')) return run();
+  if (Object.hasOwn(result, 'postgresql/')) return run()
   return vault.mount({
     mount_point: 'postgresql',
     type: 'postgresql',
     description: 'postgresql mount test',
-  }).then(run);
+  }).then(run)
 })
-.catch((err) => console.error(err.message));
+.catch((err) => console.error(err.message))

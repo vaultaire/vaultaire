@@ -1,20 +1,20 @@
 // file: example/transit.js
 
-import NodeVault from "./../src/index";
+const NodeVault = require("./../src/index")
 
-process.env.DEBUG = 'node-vault'; // switch on debug mode
+process.env.DEBUG = 'node-vault' // switch on debug mode
 
-const vault = NodeVault();
+const vault = NodeVault()
 
-const planTextValue = 'super-secret-text';
-const vaultKey = 'transit-encryption-key';
+const planTextValue = 'super-secret-text'
+const vaultKey = 'transit-encryption-key'
 
 function encode(input) {
-    return Buffer.from(input).toString('utf8');
+    return Buffer.from(input).toString('utf8')
 }
 
 function decode(input) {
-    return Buffer.from(input, 'base64').toString('utf8');
+    return Buffer.from(input, 'base64').toString('utf8')
 }
 
 Promise.resolve()
@@ -28,9 +28,9 @@ Promise.resolve()
         })
     )
     .then(decryptResponse => {
-        const value = decode(decryptResponse.data.plaintext);
-        console.log(value);
+        const value = decode(decryptResponse.data.plaintext)
+        console.log(value)
     })
     .catch(err => {
-        console.error(err.message);
-    });
+        console.error(err.message)
+    })

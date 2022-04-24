@@ -1,10 +1,10 @@
 // file: example/secret_mounts.js
 
-import NodeVault from "./../src/index";
+const NodeVault = require("./../src/index")
 
-process.env.DEBUG = 'vaultaire'; // switch on debug mode
+process.env.DEBUG = 'vaultaire' // switch on debug mode
 
-const vault = NodeVault();
+const vault = NodeVault()
 
 vault.mounts()
 .then(() => vault.mount({ mount_point: 'test', type: 'generic', description: 'just a test' }))
@@ -13,4 +13,4 @@ vault.mounts()
 .then(() => vault.read('test2/hello'))
 .then(console.log)
 .then(() => vault.unmount({ mount_point: 'test2' }))
-.catch((err) => console.error(err.message));
+.catch((err) => console.error(err.message))

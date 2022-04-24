@@ -1,9 +1,9 @@
 // file: example/rotate.js
 
-import NodeVault from "./../src/index";
+const NodeVault = require("./../src/index")
 
-process.env.DEBUG = 'vaultaire'; // switch on debug mode
+process.env.DEBUG = 'vaultaire' // switch on debug mode
 
-const vault = NodeVault();
+const vault = NodeVault()
 
-vault.rotate().catch((err) => console.error(err.message));
+vault.rotate().catch((err) => console.error(err.message))

@@ -1,12 +1,12 @@
 // file: example/write_read_delete.js
 
-import src from "./../src/index";
+const src = require("./../src/index")
 
-process.env.DEBUG = 'vaultaire'; // switch on debug mode
+process.env.DEBUG = 'vaultaire' // switch on debug mode
 
-const vault = src();
+const vault = src()
 
 vault.write('secret/hello', { value: 'world', lease: '1s' })
 .then(() => vault.read('secret/hello'))
 .then(() => vault.delete('secret/hello'))
-.catch((err) => console.error(err.message));
+.catch((err) => console.error(err.message))

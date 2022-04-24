@@ -1,11 +1,11 @@
 // file: example/status.js
 
-import NodeVault from "./../src/index";
+const NodeVault = require("./../src/index")
 
-process.env.DEBUG = 'vaultaire'; // switch on debug mode
+process.env.DEBUG = 'vaultaire' // switch on debug mode
 
-const vault = NodeVault();
+const vault = NodeVault()
 
 vault.status()
 .then(console.log)
-.catch((err) => console.error(err.message));
+.catch((err) => console.error(err.message))

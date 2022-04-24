@@ -1,25 +1,25 @@
 // file: example/kubernetes.js
 
-import NodeVault from "./../src/index";
+const NodeVault = require("./../src/index")
 
-process.env.DEBUG = 'vaultaire'; // switch on debug mode
-const vault = NodeVault();
+process.env.DEBUG = 'vaultaire' // switch on debug mode
+const vault = NodeVault()
 
-const vaultServicAccountSecretToken = process.env.VAULT_SVC_ACCT_SECRET_TOKEN || 'vault-k8s-token';
-const kubernetesHostUrl = process.env.K8S_HOST_URL || 'https://k8s.example.com:6443';
-const kubernetesCaCert = process.env.K8S_CA_CERT || 'k8s-ca-certificate-data';
+const vaultServicAccountSecretToken = process.env.VAULT_SVC_ACCT_SECRET_TOKEN || 'vault-k8s-token'
+const kubernetesHostUrl = process.env.K8S_HOST_URL || 'https://k8s.example.com:6443'
+const kubernetesCaCert = process.env.K8S_CA_CERT || 'k8s-ca-certificate-data'
 
-const appName = process.env.APP_NAME || 'some-app';
-const appServiceAccountSecretToken = process.env.APP_SVC_ACCT_SECRET_TOKEN || 'app-k8s-token';
+const appName = process.env.APP_NAME || 'some-app'
+const appServiceAccountSecretToken = process.env.APP_SVC_ACCT_SECRET_TOKEN || 'app-k8s-token'
 
 vault.auths()
 .then((result) => {
-  if (Object.hasOwn(result,'kubernetes/')) return undefined;
+  if (Object.hasOwn(result,'kubernetes/')) return undefined
   return vault.enableAuth({
     mount_point: 'kubernetes',
     type: 'kubernetes',
     description: 'Kubernetes auth',
-  });
+  })
 })
 .then(() => vault.write('auth/kubernetes/config', {
   token_reviewer_jwt: vaultServicAccountSecretToken,
@@ -38,4 +38,4 @@ vault.auths()
 }))
 .then(() => vault.kubernetesLogin({ role: appName, jwt: appServiceAccountSecretToken }))
 .then(console.log)
-.catch((err) => console.error(err.message));
+.catch((err) => console.error(err.message))

@@ -78,7 +78,7 @@ Now you can run the examples from another terminal window.
 
 First of all you should initialize and unseal the vault:
 ```bash
-pnpm run example example/init.js
+node example/init.js
 ```
 You should see `root_token: ` followed by a long key in the response.
 Please copy that long key and export it as environment variable:
@@ -88,7 +88,7 @@ export VAULT_TOKEN=<insert long key here>
 
 Now you are able to run all of the other [examples]:
 ```bash
-pnpm run example example/policies.js
+node example/policies.js
 ```
 
 [examples]: https://github.com/vaultaire/vaultaire/tree/main/example

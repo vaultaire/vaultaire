@@ -15,7 +15,7 @@ const sealStatusResponse = {
     },
   },
   required: ['sealed', 't', 'n', 'progress'],
-};
+}
 
 const auth = {
   type: 'object',
@@ -39,7 +39,7 @@ const auth = {
       type: 'boolean',
     },
   },
-};
+}
 
 const tokenResponse = {
   type: 'object',
@@ -47,7 +47,7 @@ const tokenResponse = {
     auth,
   },
   required: ['auth'],
-};
+}
 
 const approleResponse = {
   type: 'object',
@@ -72,9 +72,9 @@ const approleResponse = {
       type: 'string',
     },
   },
-};
+}
 
-export default {
+module.exports = {
   status: {
     method: 'GET',
     path: '/sys/seal-status',
@@ -1288,4 +1288,4 @@ export default {
     method: 'PUT',
     path: '/sys/step-down',
   },
-};
+}
