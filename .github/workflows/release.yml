@@ -3,17 +3,25 @@ name: Release new version
 on:
   workflow_dispatch:
     inputs:
+      version-inc:
+        description: "Increment major|minor|patch version"
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
+        required: false
+        default: 'patch'
       git-ref:
         description: 'Git Ref (Optional). Default: main'
         required: false
-
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: ${{ input.git-ref }}
+        ref: ${{ inputs.git-ref }}
     - name: Setup PNPM
       uses: pnpm/action-setup@v2.2.1
       with:
@@ -23,16 +31,12 @@ jobs:
       uses: actions/setup-node@v3
       with:
         cache: 'pnpm'
+    - run: pnpm run version ${{ inputs.version-inc  }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: pnpm publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
-    - name: 'Automated Version Bump'
-      uses: 'phips28/gh-action-bump-version@master'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        default: prerelease
-        tag-prefix: 'v'
     - name: Create release
       uses: release-drafter/release-drafter@v5
       env:
