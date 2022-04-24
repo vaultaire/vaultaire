@@ -32,12 +32,13 @@ jobs:
       with:
         cache: 'pnpm'
     - name: Increment ${{ inputs.version-inc  }}
-      run: pnpm version ${{ inputs.version-inc  }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - run: pnpm publish
+      run: pnpm version ${{ inputs.version-inc }}
+    - run: |
+        pnpm publish
+        git push
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Create Release
       uses: release-drafter/release-drafter@v5
       env:
