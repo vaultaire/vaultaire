@@ -27,17 +27,18 @@ jobs:
       with:
         version: 6
         run_install: "true"
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Setup Node
       uses: actions/setup-node@v3
       with:
         cache: 'pnpm'
-    - run: pnpm run version ${{ inputs.version-inc  }}
+    - name: Increment ${{ inputs.version-inc  }}
+      run: pnpm version ${{ inputs.version-inc  }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: pnpm publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
-    - name: Create release
+    - name: Create Release
       uses: release-drafter/release-drafter@v5
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
