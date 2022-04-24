@@ -21,7 +21,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        ref: ${{ inputs.ref }}
+        ref: ${{ github.event.inputs.ref }}
     - name: Setup PNPM
       uses: pnpm/action-setup@v2.2.1
       with:
@@ -31,8 +31,8 @@ jobs:
       uses: actions/setup-node@v3
       with:
         cache: 'pnpm'
-    - name: Increment ${{ inputs.versionIncrement  }}
-      run: pnpm version ${{ inputs.versionIncrement }}
+    - name: Increment ${{ github.event.inputs.versionIncrement }}
+      run: pnpm version ${{ github.event.inputs.versionIncrement }}
     - run: |
         pnpm publish
         git push
