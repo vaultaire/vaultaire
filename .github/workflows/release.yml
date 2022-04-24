@@ -1,0 +1,38 @@
+name: Release new version
+
+on:
+  workflow_dispatch:
+    inputs:
+      git-ref:
+        description: 'Git Ref (Optional). Default: master'
+        required: false
+
+jobs:
+  release:
+    steps:
+    - use: actions/checkout@v2
+    - name: Setup PNPM
+      uses: pnpm/action-setup@v2.2.1
+      with:
+        version: 6
+        run_install: "true"
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        cache: 'pnpm'
+    - run: pnpm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+    - name: 'Automated Version Bump'
+      uses: 'phips28/gh-action-bump-version@master'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        default: prerelease
+        tag-prefix: 'v'
+    - name: Create release
+      uses: release-drafter/release-drafter@v5
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        publish: true

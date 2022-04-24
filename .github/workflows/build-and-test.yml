@@ -8,9 +8,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x, 18.x]
@@ -36,3 +34,12 @@ jobs:
         pnpm test
         pnpm run posttest
     - uses: codecov/codecov-action@v3
+      if: ${{ matrix.node-version == '18.x' }} # only upload coverage for one version
+
+  release-drafter:
+    runs-on: ubuntu-latest
+    name: Release Drafter
+    steps:
+      - uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
