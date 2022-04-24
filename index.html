@@ -233,8 +233,6 @@ Like Old API</p>
   client.<span class="hljs-property">noCustomHTTPVerbs</span> = config.<span class="hljs-property">noCustomHTTPVerbs</span> || <span class="hljs-literal">false</span>;
   client.<span class="hljs-property">namespace</span> = config.<span class="hljs-property">namespace</span> || process.<span class="hljs-property">env</span>.<span class="hljs-property">VAULT_NAMESPACE</span>;
 
-  client.<span class="hljs-property">endpoint</span> = client.<span class="hljs-property">endpoint</span>.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\/$/</span>, <span class="hljs-string">&#x27;&#x27;</span>);
-
   <span class="hljs-keyword">const</span> requestSchema = {
     <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;object&#x27;</span>,
     <span class="hljs-attr">properties</span>: {
