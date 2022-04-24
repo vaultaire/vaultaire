@@ -1,25 +1,27 @@
-# vaultaire
+# Vaultaire
 
 [![Coverage Status](https://img.shields.io/codecov/c/github/vaultaire/vaultaire/main.svg?style=flat-square)](https://codecov.io/gh/vaultaire/vaultaire/branch/main)
 [![Download Status](https://img.shields.io/npm/dm/vaultaire.svg?style=flat-square)](https://www.npmjs.com/package/vaultaire)
 
-A client for the HTTP API of HashiCorp's [Vault] written for Node.js.
+A client for the HTTP API of HashiCorp's [Vault](https://www.vaultproject.io/) written for Node.js. Maintained fork of the [node-vault](https://github.com/nodevault/node-vault) project.
 
 
 ## Install
 make sure to use node.js version >= 12
 
     npm install vaultaire
+    pnpm install vaultaire
+    yarn install vaultaire
 
 
 ## Test
 
 Run tests inside docker to do also nice integration testing:
 
-    docker-compose up --force-recreate test
+    docker-compose up -d vault
+    pnpm test
 
-This will create containers for vault, postgres and running the tests inside
-docker.
+This will create containers for vault and running the tests.
 
 
 ## Usage
@@ -58,7 +60,7 @@ vault.write('secret/hello', { value: 'world', lease: '1s' })
 ```
 
 ## Docs
-Just generate [docco] docs via `npm run docs`.
+Just generate [docco] docs via `pnpm run docs`.
 
 
 ## Examples
