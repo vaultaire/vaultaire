@@ -53,27 +53,25 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-meta">&#x27;use strict&#x27;</span>;
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">const</span> originalTv4 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;tv4&quot;</span>)
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Commands</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./commands.js&quot;</span>)
+<span class="hljs-keyword">const</span> originalMustache = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;mustache&quot;</span>)
+<span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;http&quot;</span>)
+<span class="hljs-keyword">const</span> https = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;https&quot;</span>)
+<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;axios&quot;</span>)
+<span class="hljs-keyword">const</span> debug0 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;debug&quot;</span>)
 
-<span class="hljs-keyword">import</span> originalTv4 <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;tv4&quot;</span>;
-<span class="hljs-keyword">import</span> <span class="hljs-title class_">Commands</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./commands.js&quot;</span>;
-<span class="hljs-keyword">import</span> originalMustache <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;mustache&quot;</span>;
-<span class="hljs-keyword">import</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;http&quot;</span>;
-<span class="hljs-keyword">import</span> https <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https&quot;</span>;
-<span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;axios&quot;</span>;
-<span class="hljs-keyword">import</span> debug0 <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;debug&quot;</span>;
-
-<span class="hljs-keyword">const</span> originalDebug = <span class="hljs-title function_">debug0</span>(<span class="hljs-string">&#x27;vaultaire&#x27;</span>);
+<span class="hljs-keyword">const</span> originalDebug = <span class="hljs-title function_">debug0</span>(<span class="hljs-string">&#x27;vaultaire&#x27;</span>)
 
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">VaultError</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Error</span> {}
 
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">ApiResponseError</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">VaultError</span> {
   <span class="hljs-title function_">constructor</span>(<span class="hljs-params">message, response</span>) {
-    <span class="hljs-variable language_">super</span>(message);
+    <span class="hljs-variable language_">super</span>(message)
     <span class="hljs-variable language_">this</span>.<span class="hljs-property">response</span> = {
       <span class="hljs-attr">statusCode</span>: response.<span class="hljs-property">statusCode</span>,
       <span class="hljs-attr">body</span>: response.<span class="hljs-property">body</span>,
-    };
+    }
   }
 }
 
@@ -92,12 +90,12 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">const</span> debug = config.<span class="hljs-property">debug</span> || originalDebug;
-  <span class="hljs-keyword">const</span> tv4 = config.<span class="hljs-property">tv4</span> || originalTv4;
-  <span class="hljs-keyword">const</span> commands = config.<span class="hljs-property">commands</span> || <span class="hljs-title class_">Commands</span>;
-  <span class="hljs-keyword">const</span> mustache = config.<span class="hljs-property">mustache</span> || originalMustache;
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">const</span> debug = config.<span class="hljs-property">debug</span> || originalDebug
+  <span class="hljs-keyword">const</span> tv4 = config.<span class="hljs-property">tv4</span> || originalTv4
+  <span class="hljs-keyword">const</span> commands = config.<span class="hljs-property">commands</span> || <span class="hljs-title class_">Commands</span>
+  <span class="hljs-keyword">const</span> mustache = config.<span class="hljs-property">mustache</span> || originalMustache
 
-  <span class="hljs-keyword">let</span> requestPromise = (config[<span class="hljs-string">&#x27;request-promise&#x27;</span>] || axios);</pre></div></div>
+  <span class="hljs-keyword">let</span> requestPromise = (config[<span class="hljs-string">&#x27;request-promise&#x27;</span>] || axios)</pre></div></div>
             
         </li>
         
@@ -116,7 +114,7 @@ that NodeVault will use</p>
             
             <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (requestPromise != <span class="hljs-literal">null</span> &amp;&amp; requestPromise.<span class="hljs-property">create</span> != <span class="hljs-literal">null</span>) {
     requestPromise = requestPromise.<span class="hljs-title function_">create</span>({
-    });
+    })
     <span class="hljs-keyword">if</span> (requestPromise != <span class="hljs-literal">null</span> &amp;&amp; requestPromise.<span class="hljs-property">options</span> != <span class="hljs-literal">null</span>) {</pre></div></div>
             
         </li>
@@ -133,9 +131,9 @@ Handles strictSSL config of Old API</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">const</span> strictSSL = !process.<span class="hljs-property">env</span>.<span class="hljs-property">VAULT_SKIP_VERIFY</span>;
-      requestPromise.<span class="hljs-property">defaults</span>.<span class="hljs-property">httpsAgent</span> = <span class="hljs-keyword">new</span> https.<span class="hljs-title class_">Agent</span>({ <span class="hljs-attr">rejectUnauthorized</span>: strictSSL });
-      requestPromise.<span class="hljs-property">defaults</span>.<span class="hljs-property">httpAgent</span> = <span class="hljs-keyword">new</span> http.<span class="hljs-title class_">Agent</span>();</pre></div></div>
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">const</span> strictSSL = !process.<span class="hljs-property">env</span>.<span class="hljs-property">VAULT_SKIP_VERIFY</span>
+      requestPromise.<span class="hljs-property">defaults</span>.<span class="hljs-property">httpsAgent</span> = <span class="hljs-keyword">new</span> https.<span class="hljs-title class_">Agent</span>({ <span class="hljs-attr">rejectUnauthorized</span>: strictSSL })
+      requestPromise.<span class="hljs-property">defaults</span>.<span class="hljs-property">httpAgent</span> = <span class="hljs-keyword">new</span> http.<span class="hljs-title class_">Agent</span>()</pre></div></div>
             
         </li>
         
@@ -152,7 +150,7 @@ Like Old API</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      requestPromise.<span class="hljs-property">defaults</span>.<span class="hljs-property">validateStatus</span> = <span class="hljs-function">(<span class="hljs-params">_</span>) =&gt;</span> <span class="hljs-literal">true</span> &amp;&amp; _;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>      requestPromise.<span class="hljs-property">defaults</span>.<span class="hljs-property">validateStatus</span> = <span class="hljs-function">(<span class="hljs-params">_</span>) =&gt;</span> <span class="hljs-literal">true</span> &amp;&amp; _</pre></div></div>
             
         </li>
         
@@ -168,19 +166,19 @@ Like Old API</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      requestPromise.<span class="hljs-property">defaults</span>.<span class="hljs-property">responseType</span> = <span class="hljs-string">&#x27;json&#x27;</span>;
+            <div class="content"><div class='highlight'><pre>      requestPromise.<span class="hljs-property">defaults</span>.<span class="hljs-property">responseType</span> = <span class="hljs-string">&#x27;json&#x27;</span>
     }
     <span class="hljs-keyword">if</span> (requestPromise != <span class="hljs-literal">null</span> &amp;&amp; requestPromise.<span class="hljs-property">request</span> != <span class="hljs-literal">null</span>) {
-      requestPromise = requestPromise.<span class="hljs-property">request</span>;
+      requestPromise = requestPromise.<span class="hljs-property">request</span>
     }
   }
-  <span class="hljs-keyword">const</span> client = {};
+  <span class="hljs-keyword">const</span> client = {}
 
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleVaultResponse</span>(<span class="hljs-params">response</span>) {
-    <span class="hljs-keyword">if</span> (!response) <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">VaultError</span>(<span class="hljs-string">&#x27;No response passed&#x27;</span>));
-    response.<span class="hljs-property">statusCode</span> = response.<span class="hljs-property">statusCode</span> || response.<span class="hljs-property">status</span>;
-    response.<span class="hljs-property">body</span> = response.<span class="hljs-property">body</span> || response.<span class="hljs-property">data</span>;
-    <span class="hljs-title function_">debug</span>(response.<span class="hljs-property">statusCode</span>);
+    <span class="hljs-keyword">if</span> (!response) <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">VaultError</span>(<span class="hljs-string">&#x27;No response passed&#x27;</span>))
+    response.<span class="hljs-property">statusCode</span> = response.<span class="hljs-property">statusCode</span> || response.<span class="hljs-property">status</span>
+    response.<span class="hljs-property">body</span> = response.<span class="hljs-property">body</span> || response.<span class="hljs-property">data</span>
+    <span class="hljs-title function_">debug</span>(response.<span class="hljs-property">statusCode</span>)
     <span class="hljs-keyword">if</span> (response.<span class="hljs-property">statusCode</span> !== <span class="hljs-number">200</span> &amp;&amp; response.<span class="hljs-property">statusCode</span> !== <span class="hljs-number">204</span>) {</pre></div></div>
             
         </li>
@@ -197,21 +195,21 @@ Like Old API</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (response.<span class="hljs-property">request</span>.<span class="hljs-property">path</span>.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/sys\/health/</span>) !== <span class="hljs-literal">null</span>) {
-        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(response.<span class="hljs-property">body</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(response.<span class="hljs-property">body</span>)
       }
-      <span class="hljs-keyword">let</span> message;
+      <span class="hljs-keyword">let</span> message
       <span class="hljs-keyword">if</span> (response.<span class="hljs-property">body</span> &amp;&amp; response.<span class="hljs-property">body</span>.<span class="hljs-property">errors</span> &amp;&amp; response.<span class="hljs-property">body</span>.<span class="hljs-property">errors</span>.<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span>) {
-        message = response.<span class="hljs-property">body</span>.<span class="hljs-property">errors</span>[<span class="hljs-number">0</span>];
+        message = response.<span class="hljs-property">body</span>.<span class="hljs-property">errors</span>[<span class="hljs-number">0</span>]
       } <span class="hljs-keyword">else</span> {
-        message = <span class="hljs-string">`Status <span class="hljs-subst">${response.statusCode}</span>`</span>;
+        message = <span class="hljs-string">`Status <span class="hljs-subst">${response.statusCode}</span>`</span>
       }
-      <span class="hljs-keyword">const</span> error = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ApiResponseError</span>(message, response);
-      <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error);
+      <span class="hljs-keyword">const</span> error = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ApiResponseError</span>(message, response)
+      <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error)
     }
-    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(response.<span class="hljs-property">body</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(response.<span class="hljs-property">body</span>)
   }
 
-  client.<span class="hljs-property">handleVaultResponse</span> = handleVaultResponse;</pre></div></div>
+  client.<span class="hljs-property">handleVaultResponse</span> = handleVaultResponse</pre></div></div>
             
         </li>
         
@@ -226,14 +224,14 @@ Like Old API</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  client.<span class="hljs-property">apiVersion</span> = config.<span class="hljs-property">apiVersion</span> || <span class="hljs-string">&#x27;v1&#x27;</span>;
-  client.<span class="hljs-property">endpoint</span> = config.<span class="hljs-property">endpoint</span> || process.<span class="hljs-property">env</span>.<span class="hljs-property">VAULT_ADDR</span> || <span class="hljs-string">&#x27;http://127.0.0.1:8200&#x27;</span>;
-  client.<span class="hljs-property">pathPrefix</span> = config.<span class="hljs-property">pathPrefix</span> || process.<span class="hljs-property">env</span>.<span class="hljs-property">VAULT_PREFIX</span> || <span class="hljs-string">&#x27;&#x27;</span>;
-  client.<span class="hljs-property">token</span> = config.<span class="hljs-property">token</span> || process.<span class="hljs-property">env</span>.<span class="hljs-property">VAULT_TOKEN</span>;
-  client.<span class="hljs-property">noCustomHTTPVerbs</span> = config.<span class="hljs-property">noCustomHTTPVerbs</span> || <span class="hljs-literal">false</span>;
-  client.<span class="hljs-property">namespace</span> = config.<span class="hljs-property">namespace</span> || process.<span class="hljs-property">env</span>.<span class="hljs-property">VAULT_NAMESPACE</span>;
+            <div class="content"><div class='highlight'><pre>  client.<span class="hljs-property">apiVersion</span> = config.<span class="hljs-property">apiVersion</span> || <span class="hljs-string">&#x27;v1&#x27;</span>
+  client.<span class="hljs-property">endpoint</span> = config.<span class="hljs-property">endpoint</span> || process.<span class="hljs-property">env</span>.<span class="hljs-property">VAULT_ADDR</span> || <span class="hljs-string">&#x27;http://127.0.0.1:8200&#x27;</span>
+  client.<span class="hljs-property">pathPrefix</span> = config.<span class="hljs-property">pathPrefix</span> || process.<span class="hljs-property">env</span>.<span class="hljs-property">VAULT_PREFIX</span> || <span class="hljs-string">&#x27;&#x27;</span>
+  client.<span class="hljs-property">token</span> = config.<span class="hljs-property">token</span> || process.<span class="hljs-property">env</span>.<span class="hljs-property">VAULT_TOKEN</span>
+  client.<span class="hljs-property">noCustomHTTPVerbs</span> = config.<span class="hljs-property">noCustomHTTPVerbs</span> || <span class="hljs-literal">false</span>
+  client.<span class="hljs-property">namespace</span> = config.<span class="hljs-property">namespace</span> || process.<span class="hljs-property">env</span>.<span class="hljs-property">VAULT_NAMESPACE</span>
 
-  client.<span class="hljs-property">endpoint</span> = client.<span class="hljs-property">endpoint</span>.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\/$/</span>, <span class="hljs-string">&#x27;&#x27;</span>);
+  client.<span class="hljs-property">endpoint</span> = client.<span class="hljs-property">endpoint</span>.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\/$/</span>, <span class="hljs-string">&#x27;&#x27;</span>)
 
   <span class="hljs-keyword">const</span> requestSchema = {
     <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;object&#x27;</span>,
@@ -246,7 +244,7 @@ Like Old API</p>
       },
     },
     <span class="hljs-attr">required</span>: [<span class="hljs-string">&#x27;path&#x27;</span>, <span class="hljs-string">&#x27;method&#x27;</span>],
-  };</pre></div></div>
+  }</pre></div></div>
             
         </li>
         
@@ -262,9 +260,9 @@ Like Old API</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>  client.<span class="hljs-property">request</span> = <span class="hljs-function">(<span class="hljs-params">options = {}</span>) =&gt;</span> {
-    <span class="hljs-keyword">const</span> valid = tv4.<span class="hljs-title function_">validate</span>(options, requestSchema);
-    <span class="hljs-keyword">if</span> (!valid) <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(tv4.<span class="hljs-property">error</span>);
-    <span class="hljs-keyword">let</span> uri = <span class="hljs-string">`<span class="hljs-subst">${client.endpoint}</span>/<span class="hljs-subst">${client.apiVersion}</span><span class="hljs-subst">${client.pathPrefix}</span><span class="hljs-subst">${options.path}</span>`</span>;</pre></div></div>
+    <span class="hljs-keyword">const</span> valid = tv4.<span class="hljs-title function_">validate</span>(options, requestSchema)
+    <span class="hljs-keyword">if</span> (!valid) <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(tv4.<span class="hljs-property">error</span>)
+    <span class="hljs-keyword">let</span> uri = <span class="hljs-string">`<span class="hljs-subst">${client.endpoint}</span>/<span class="hljs-subst">${client.apiVersion}</span><span class="hljs-subst">${client.pathPrefix}</span><span class="hljs-subst">${options.path}</span>`</span></pre></div></div>
             
         </li>
         
@@ -279,16 +277,16 @@ Like Old API</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    uri = uri.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&amp;#x2F;/g</span>, <span class="hljs-string">&#x27;/&#x27;</span>);
-    options.<span class="hljs-property">headers</span> = options.<span class="hljs-property">headers</span> || {};
+            <div class="content"><div class='highlight'><pre>    uri = uri.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&amp;#x2F;/g</span>, <span class="hljs-string">&#x27;/&#x27;</span>)
+    options.<span class="hljs-property">headers</span> = options.<span class="hljs-property">headers</span> || {}
     <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> client.<span class="hljs-property">token</span> === <span class="hljs-string">&#x27;string&#x27;</span> &amp;&amp; client.<span class="hljs-property">token</span>.<span class="hljs-property">length</span>) {
-      options.<span class="hljs-property">headers</span>[<span class="hljs-string">&#x27;X-Vault-Token&#x27;</span>] = options.<span class="hljs-property">headers</span>[<span class="hljs-string">&#x27;X-Vault-Token&#x27;</span>] || client.<span class="hljs-property">token</span>;
+      options.<span class="hljs-property">headers</span>[<span class="hljs-string">&#x27;X-Vault-Token&#x27;</span>] = options.<span class="hljs-property">headers</span>[<span class="hljs-string">&#x27;X-Vault-Token&#x27;</span>] || client.<span class="hljs-property">token</span>
     }
     <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> client.<span class="hljs-property">namespace</span> === <span class="hljs-string">&#x27;string&#x27;</span> &amp;&amp; client.<span class="hljs-property">namespace</span>.<span class="hljs-property">length</span>) {
-      options.<span class="hljs-property">headers</span>[<span class="hljs-string">&#x27;X-Vault-Namespace&#x27;</span>] = client.<span class="hljs-property">namespace</span>;
+      options.<span class="hljs-property">headers</span>[<span class="hljs-string">&#x27;X-Vault-Namespace&#x27;</span>] = client.<span class="hljs-property">namespace</span>
     }
-    options.<span class="hljs-property">url</span> = uri;
-    <span class="hljs-title function_">debug</span>(options.<span class="hljs-property">method</span>, options.<span class="hljs-property">url</span>);</pre></div></div>
+    options.<span class="hljs-property">url</span> = uri
+    <span class="hljs-title function_">debug</span>(options.<span class="hljs-property">method</span>, options.<span class="hljs-property">url</span>)</pre></div></div>
             
         </li>
         
@@ -305,7 +303,7 @@ Added to ensure compatibility with Old API</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    options.<span class="hljs-property">uri</span> = options.<span class="hljs-property">url</span>;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    options.<span class="hljs-property">uri</span> = options.<span class="hljs-property">url</span></pre></div></div>
             
         </li>
         
@@ -321,7 +319,7 @@ Merge Data Received from Old API into new one</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    options.<span class="hljs-property">data</span> = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, options.<span class="hljs-property">data</span>, options.<span class="hljs-property">json</span>);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    options.<span class="hljs-property">data</span> = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, options.<span class="hljs-property">data</span>, options.<span class="hljs-property">json</span>)</pre></div></div>
             
         </li>
         
@@ -337,59 +335,59 @@ Added to ensure compatibility with Old API</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    options.<span class="hljs-property">json</span> = options.<span class="hljs-property">data</span>;
+            <div class="content"><div class='highlight'><pre>    options.<span class="hljs-property">json</span> = options.<span class="hljs-property">data</span>
 
-    <span class="hljs-keyword">if</span> (options.<span class="hljs-property">data</span> &amp;&amp; <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(options.<span class="hljs-property">data</span>).<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span>) <span class="hljs-title function_">debug</span>(options.<span class="hljs-property">data</span>);
-    <span class="hljs-keyword">return</span> <span class="hljs-title function_">requestPromise</span>(options).<span class="hljs-title function_">then</span>(client.<span class="hljs-property">handleVaultResponse</span>);
-  };
+    <span class="hljs-keyword">if</span> (options.<span class="hljs-property">data</span> &amp;&amp; <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(options.<span class="hljs-property">data</span>).<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span>) <span class="hljs-title function_">debug</span>(options.<span class="hljs-property">data</span>)
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">requestPromise</span>(options).<span class="hljs-title function_">then</span>(client.<span class="hljs-property">handleVaultResponse</span>)
+  }
 
   client.<span class="hljs-property">help</span> = <span class="hljs-function">(<span class="hljs-params">path, requestOptions</span>) =&gt;</span> {
-    <span class="hljs-title function_">debug</span>(<span class="hljs-string">`help for <span class="hljs-subst">${path}</span>`</span>);
-    <span class="hljs-keyword">const</span> options = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, config.<span class="hljs-property">requestOptions</span>, requestOptions);
-    options.<span class="hljs-property">path</span> = <span class="hljs-string">`/<span class="hljs-subst">${path}</span>?help=1`</span>;
-    options.<span class="hljs-property">method</span> = <span class="hljs-string">&#x27;GET&#x27;</span>;
-    <span class="hljs-keyword">return</span> client.<span class="hljs-title function_">request</span>(options);
-  };
+    <span class="hljs-title function_">debug</span>(<span class="hljs-string">`help for <span class="hljs-subst">${path}</span>`</span>)
+    <span class="hljs-keyword">const</span> options = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, config.<span class="hljs-property">requestOptions</span>, requestOptions)
+    options.<span class="hljs-property">path</span> = <span class="hljs-string">`/<span class="hljs-subst">${path}</span>?help=1`</span>
+    options.<span class="hljs-property">method</span> = <span class="hljs-string">&#x27;GET&#x27;</span>
+    <span class="hljs-keyword">return</span> client.<span class="hljs-title function_">request</span>(options)
+  }
 
   client.<span class="hljs-property">write</span> = <span class="hljs-function">(<span class="hljs-params">path, data, requestOptions</span>) =&gt;</span> {
-    <span class="hljs-title function_">debug</span>(<span class="hljs-string">&#x27;write %o to %s&#x27;</span>, data, path);
-    <span class="hljs-keyword">const</span> options = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, config.<span class="hljs-property">requestOptions</span>, requestOptions);
-    options.<span class="hljs-property">path</span> = <span class="hljs-string">`/<span class="hljs-subst">${path}</span>`</span>;
-    options.<span class="hljs-property">json</span> = data;
-    options.<span class="hljs-property">method</span> = <span class="hljs-string">&#x27;PUT&#x27;</span>;
-    <span class="hljs-keyword">return</span> client.<span class="hljs-title function_">request</span>(options);
-  };
+    <span class="hljs-title function_">debug</span>(<span class="hljs-string">&#x27;write %o to %s&#x27;</span>, data, path)
+    <span class="hljs-keyword">const</span> options = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, config.<span class="hljs-property">requestOptions</span>, requestOptions)
+    options.<span class="hljs-property">path</span> = <span class="hljs-string">`/<span class="hljs-subst">${path}</span>`</span>
+    options.<span class="hljs-property">json</span> = data
+    options.<span class="hljs-property">method</span> = <span class="hljs-string">&#x27;PUT&#x27;</span>
+    <span class="hljs-keyword">return</span> client.<span class="hljs-title function_">request</span>(options)
+  }
 
   client.<span class="hljs-property">read</span> = <span class="hljs-function">(<span class="hljs-params">path, requestOptions</span>) =&gt;</span> {
-    <span class="hljs-title function_">debug</span>(<span class="hljs-string">`read <span class="hljs-subst">${path}</span>`</span>);
-    <span class="hljs-keyword">const</span> options = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, config.<span class="hljs-property">requestOptions</span>, requestOptions);
-    options.<span class="hljs-property">path</span> = <span class="hljs-string">`/<span class="hljs-subst">${path}</span>`</span>;
-    options.<span class="hljs-property">method</span> = <span class="hljs-string">&#x27;GET&#x27;</span>;
-    <span class="hljs-keyword">return</span> client.<span class="hljs-title function_">request</span>(options);
-  };
+    <span class="hljs-title function_">debug</span>(<span class="hljs-string">`read <span class="hljs-subst">${path}</span>`</span>)
+    <span class="hljs-keyword">const</span> options = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, config.<span class="hljs-property">requestOptions</span>, requestOptions)
+    options.<span class="hljs-property">path</span> = <span class="hljs-string">`/<span class="hljs-subst">${path}</span>`</span>
+    options.<span class="hljs-property">method</span> = <span class="hljs-string">&#x27;GET&#x27;</span>
+    <span class="hljs-keyword">return</span> client.<span class="hljs-title function_">request</span>(options)
+  }
 
   client.<span class="hljs-property">list</span> = <span class="hljs-function">(<span class="hljs-params">path, requestOptions</span>) =&gt;</span> {
-    <span class="hljs-title function_">debug</span>(<span class="hljs-string">`list <span class="hljs-subst">${path}</span>`</span>);
-    <span class="hljs-keyword">const</span> options = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, config.<span class="hljs-property">requestOptions</span>, requestOptions);
-    options.<span class="hljs-property">path</span> = <span class="hljs-string">`/<span class="hljs-subst">${path}</span>`</span>;
+    <span class="hljs-title function_">debug</span>(<span class="hljs-string">`list <span class="hljs-subst">${path}</span>`</span>)
+    <span class="hljs-keyword">const</span> options = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, config.<span class="hljs-property">requestOptions</span>, requestOptions)
+    options.<span class="hljs-property">path</span> = <span class="hljs-string">`/<span class="hljs-subst">${path}</span>`</span>
 
     <span class="hljs-keyword">if</span> (client.<span class="hljs-property">noCustomHTTPVerbs</span>) {
-      options.<span class="hljs-property">path</span> = <span class="hljs-string">`/<span class="hljs-subst">${path}</span>?list=1`</span>;
-      options.<span class="hljs-property">method</span> = <span class="hljs-string">&#x27;GET&#x27;</span>;
+      options.<span class="hljs-property">path</span> = <span class="hljs-string">`/<span class="hljs-subst">${path}</span>?list=1`</span>
+      options.<span class="hljs-property">method</span> = <span class="hljs-string">&#x27;GET&#x27;</span>
     } <span class="hljs-keyword">else</span> {
-      options.<span class="hljs-property">path</span> = <span class="hljs-string">`/<span class="hljs-subst">${path}</span>`</span>;
-      options.<span class="hljs-property">method</span> = <span class="hljs-string">&#x27;LIST&#x27;</span>;
+      options.<span class="hljs-property">path</span> = <span class="hljs-string">`/<span class="hljs-subst">${path}</span>`</span>
+      options.<span class="hljs-property">method</span> = <span class="hljs-string">&#x27;LIST&#x27;</span>
     }
-    <span class="hljs-keyword">return</span> client.<span class="hljs-title function_">request</span>(options);
-  };
+    <span class="hljs-keyword">return</span> client.<span class="hljs-title function_">request</span>(options)
+  }
 
   client.<span class="hljs-property">delete</span> = <span class="hljs-function">(<span class="hljs-params">path, requestOptions</span>) =&gt;</span> {
-    <span class="hljs-title function_">debug</span>(<span class="hljs-string">`delete <span class="hljs-subst">${path}</span>`</span>);
-    <span class="hljs-keyword">const</span> options = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, config.<span class="hljs-property">requestOptions</span>, requestOptions);
-    options.<span class="hljs-property">path</span> = <span class="hljs-string">`/<span class="hljs-subst">${path}</span>`</span>;
-    options.<span class="hljs-property">method</span> = <span class="hljs-string">&#x27;DELETE&#x27;</span>;
-    <span class="hljs-keyword">return</span> client.<span class="hljs-title function_">request</span>(options);
-  };
+    <span class="hljs-title function_">debug</span>(<span class="hljs-string">`delete <span class="hljs-subst">${path}</span>`</span>)
+    <span class="hljs-keyword">const</span> options = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, config.<span class="hljs-property">requestOptions</span>, requestOptions)
+    options.<span class="hljs-property">path</span> = <span class="hljs-string">`/<span class="hljs-subst">${path}</span>`</span>
+    options.<span class="hljs-property">method</span> = <span class="hljs-string">&#x27;DELETE&#x27;</span>
+    <span class="hljs-keyword">return</span> client.<span class="hljs-title function_">request</span>(options)
+  }
 
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">validate</span>(<span class="hljs-params">json, schema</span>) {</pre></div></div>
             
@@ -406,53 +404,53 @@ Added to ensure compatibility with Old API</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (schema === <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>();
-    <span class="hljs-keyword">const</span> valid = tv4.<span class="hljs-title function_">validate</span>(json, schema);
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (schema === <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>()
+    <span class="hljs-keyword">const</span> valid = tv4.<span class="hljs-title function_">validate</span>(json, schema)
     <span class="hljs-keyword">if</span> (!valid) {
-      <span class="hljs-title function_">debug</span>(tv4.<span class="hljs-property">error</span>.<span class="hljs-property">dataPath</span>);
-      <span class="hljs-title function_">debug</span>(tv4.<span class="hljs-property">error</span>.<span class="hljs-property">message</span>);
-      <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(tv4.<span class="hljs-property">error</span>);
+      <span class="hljs-title function_">debug</span>(tv4.<span class="hljs-property">error</span>.<span class="hljs-property">dataPath</span>)
+      <span class="hljs-title function_">debug</span>(tv4.<span class="hljs-property">error</span>.<span class="hljs-property">message</span>)
+      <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(tv4.<span class="hljs-property">error</span>)
     }
-    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>()
   }
 
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">extendOptions</span>(<span class="hljs-params">conf, options, args = {}</span>) {
-    <span class="hljs-keyword">const</span> hasArgs = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(args).<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">if</span> (!hasArgs) <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(options);
+    <span class="hljs-keyword">const</span> hasArgs = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(args).<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span>
+    <span class="hljs-keyword">if</span> (!hasArgs) <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(options)
 
-    <span class="hljs-keyword">const</span> querySchema = conf.<span class="hljs-property">schema</span>.<span class="hljs-property">query</span>;
+    <span class="hljs-keyword">const</span> querySchema = conf.<span class="hljs-property">schema</span>.<span class="hljs-property">query</span>
     <span class="hljs-keyword">if</span> (querySchema) {
-      <span class="hljs-keyword">const</span> params = [];
+      <span class="hljs-keyword">const</span> params = []
       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">of</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(querySchema.<span class="hljs-property">properties</span>)) {
         <span class="hljs-keyword">if</span> (key <span class="hljs-keyword">in</span> args) {
-          params.<span class="hljs-title function_">push</span>(<span class="hljs-string">`<span class="hljs-subst">${key}</span>=<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(args[key])}</span>`</span>);
+          params.<span class="hljs-title function_">push</span>(<span class="hljs-string">`<span class="hljs-subst">${key}</span>=<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(args[key])}</span>`</span>)
         }
       }
       <span class="hljs-keyword">if</span> (params.<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span>) {
-        options.<span class="hljs-property">path</span> += <span class="hljs-string">`?<span class="hljs-subst">${params.join(<span class="hljs-string">&#x27;&amp;&#x27;</span>)}</span>`</span>;
+        options.<span class="hljs-property">path</span> += <span class="hljs-string">`?<span class="hljs-subst">${params.join(<span class="hljs-string">&#x27;&amp;&#x27;</span>)}</span>`</span>
       }
     }
 
-    <span class="hljs-keyword">const</span> reqSchema = conf.<span class="hljs-property">schema</span>.<span class="hljs-property">req</span>;
+    <span class="hljs-keyword">const</span> reqSchema = conf.<span class="hljs-property">schema</span>.<span class="hljs-property">req</span>
     <span class="hljs-keyword">if</span> (reqSchema) {
-      <span class="hljs-keyword">const</span> json = {};
+      <span class="hljs-keyword">const</span> json = {}
       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">of</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(reqSchema.<span class="hljs-property">properties</span>)) {
         <span class="hljs-keyword">if</span> (key <span class="hljs-keyword">in</span> args) {
-          json[key] = args[key];
+          json[key] = args[key]
         }
       }
       <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(json).<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span>) {
-        options.<span class="hljs-property">json</span> = json;
+        options.<span class="hljs-property">json</span> = json
       }
     }
 
-    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(options);
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(options)
   }
 
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">generateFunction</span>(<span class="hljs-params">name, conf</span>) {
     client[name] = <span class="hljs-function">(<span class="hljs-params">args = {}</span>) =&gt;</span> {
-      <span class="hljs-keyword">const</span> options = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, config.<span class="hljs-property">requestOptions</span>, args.<span class="hljs-property">requestOptions</span>);
-      options.<span class="hljs-property">method</span> = conf.<span class="hljs-property">method</span>;</pre></div></div>
+      <span class="hljs-keyword">const</span> options = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, config.<span class="hljs-property">requestOptions</span>, args.<span class="hljs-property">requestOptions</span>)
+      options.<span class="hljs-property">method</span> = conf.<span class="hljs-property">method</span></pre></div></div>
             
         </li>
         
@@ -467,7 +465,7 @@ Added to ensure compatibility with Old API</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      options.<span class="hljs-property">path</span> = mustache.<span class="hljs-title function_">render</span>(conf.<span class="hljs-property">path</span>, args);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>      options.<span class="hljs-property">path</span> = mustache.<span class="hljs-title function_">render</span>(conf.<span class="hljs-property">path</span>, args)</pre></div></div>
             
         </li>
         
@@ -484,9 +482,9 @@ Added to ensure compatibility with Old API</p>
             
             <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (!conf.<span class="hljs-property">schema</span>) {
         <span class="hljs-keyword">if</span> (options.<span class="hljs-property">method</span> === <span class="hljs-string">&#x27;POST&#x27;</span> || options.<span class="hljs-property">method</span> === <span class="hljs-string">&#x27;PUT&#x27;</span>) {
-          options.<span class="hljs-property">json</span> = args;
+          options.<span class="hljs-property">json</span> = args
         }
-        <span class="hljs-keyword">return</span> client.<span class="hljs-title function_">request</span>(options);
+        <span class="hljs-keyword">return</span> client.<span class="hljs-title function_">request</span>(options)
       }</pre></div></div>
             
         </li>
@@ -505,23 +503,23 @@ Added to ensure compatibility with Old API</p>
             <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">let</span> promise = <span class="hljs-title function_">validate</span>(args, conf.<span class="hljs-property">schema</span>.<span class="hljs-property">req</span>)
       .<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">validate</span>(args, conf.<span class="hljs-property">schema</span>.<span class="hljs-property">query</span>))
       .<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">extendOptions</span>(conf, options, args))
-      .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">extendedOptions</span>) =&gt;</span> client.<span class="hljs-title function_">request</span>(extendedOptions));
+      .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">extendedOptions</span>) =&gt;</span> client.<span class="hljs-title function_">request</span>(extendedOptions))
 
       <span class="hljs-keyword">if</span> (conf.<span class="hljs-property">tokenSource</span>) {
         promise = promise.<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
-          <span class="hljs-keyword">const</span> candidateToken = response.<span class="hljs-property">auth</span> &amp;&amp; response.<span class="hljs-property">auth</span>.<span class="hljs-property">client_token</span>;
+          <span class="hljs-keyword">const</span> candidateToken = response.<span class="hljs-property">auth</span> &amp;&amp; response.<span class="hljs-property">auth</span>.<span class="hljs-property">client_token</span>
           <span class="hljs-keyword">if</span> (candidateToken) {
-            client.<span class="hljs-property">token</span> = candidateToken;
+            client.<span class="hljs-property">token</span> = candidateToken
           }
-          <span class="hljs-keyword">return</span> response;
-        });
+          <span class="hljs-keyword">return</span> response
+        })
       }
 
-      <span class="hljs-keyword">return</span> promise;
-    };
+      <span class="hljs-keyword">return</span> promise
+    }
   }
 
-  client.<span class="hljs-property">generateFunction</span> = generateFunction;</pre></div></div>
+  client.<span class="hljs-property">generateFunction</span> = generateFunction</pre></div></div>
             
         </li>
         
@@ -538,12 +536,12 @@ going the functional way first defining a wrapper function</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">const</span> <span class="hljs-title function_">assignFunctions</span> = commandName =&gt; <span class="hljs-title function_">generateFunction</span>(commandName, commands[commandName]);
-  <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(commands).<span class="hljs-title function_">forEach</span>(assignFunctions);
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">const</span> <span class="hljs-title function_">assignFunctions</span> = commandName =&gt; <span class="hljs-title function_">generateFunction</span>(commandName, commands[commandName])
+  <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(commands).<span class="hljs-title function_">forEach</span>(assignFunctions)
 
-  <span class="hljs-keyword">return</span> client;
+  <span class="hljs-keyword">return</span> client
 }
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">NodeVault</span></pre></div></div>
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-title class_">NodeVault</span></pre></div></div>
             
         </li>
         
