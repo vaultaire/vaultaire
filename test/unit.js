@@ -80,6 +80,31 @@ describe('vaultaire', () => {
     });
   });
 
+  describe('client initialization', () => {
+    it('should not trim endpoint if no trailing slash', () => {
+      const defaultsStub = sinon.stub();
+      const vaultConfig = {
+        endpoint: 'http://localhost:8200',
+        'request-promise': {
+          defaults: defaultsStub,
+        },
+      };
+      const vault = NodeVault(vaultConfig);
+      vault.endpoint.should.equal('http://localhost:8200');
+    });
+
+    it('should trim endpoint if trailing slash', () => {
+      const defaultsStub = sinon.stub();
+      const vaultConfig = {
+        endpoint: 'http://localhost:8200/',
+        'request-promise': {
+          defaults: defaultsStub,
+        },
+      };
+      const vault = NodeVault(vaultConfig);
+      vault.endpoint.should.equal('http://localhost:8200');
+    });
+  });
 
   describe('client', () => {
     let request = null;

@@ -89,6 +89,8 @@ function NodeVault(config = {}) {
   client.noCustomHTTPVerbs = config.noCustomHTTPVerbs || false;
   client.namespace = config.namespace || process.env.VAULT_NAMESPACE;
 
+  client.endpoint = client.endpoint.replace(/\/$/, '');
+
   const requestSchema = {
     type: 'object',
     properties: {
