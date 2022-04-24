@@ -47,6 +47,7 @@ jobs:
   update-doc:
     runs-on: ubuntu-latest
     concurrency: ci-${{ github.ref }}
+    if: ${{ github.event_name == 'push' }}
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
