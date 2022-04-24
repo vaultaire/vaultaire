@@ -1,6 +1,6 @@
 {
   "name": "vaultaire",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "JavaScript/Typescript client for HashiCorp's Vault",
   "main": "./src/index.js",
   "engines": {
