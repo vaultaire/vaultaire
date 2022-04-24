@@ -129,6 +129,40 @@
   },
 }
 
+<span class="hljs-keyword">const</span> kubernetesRoleResponse = {
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;object&#x27;</span>,
+  <span class="hljs-attr">properties</span>: {
+    auth,
+    <span class="hljs-attr">name</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;string&#x27;</span>,
+    },
+    <span class="hljs-attr">bound_cidrs</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;array&#x27;</span>,
+    },
+    <span class="hljs-attr">bound_service_account_names</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;array&#x27;</span>,
+    },
+    <span class="hljs-attr">bound_service_account_namespaces</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;array&#x27;</span>,
+    },
+    <span class="hljs-attr">ttl</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;integer&#x27;</span>,
+    },
+    <span class="hljs-attr">max_ttl</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;integer&#x27;</span>,
+    },
+    <span class="hljs-attr">policies</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;array&#x27;</span>,
+    },
+    <span class="hljs-attr">num_uses</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;integer&#x27;</span>,
+    },
+    <span class="hljs-attr">period</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;integer&#x27;</span>,
+    },
+  },
+}
+
 <span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
   <span class="hljs-attr">status</span>: {
     <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
@@ -1266,6 +1300,52 @@
       },
       <span class="hljs-attr">res</span>: approleResponse,
     },
+  },
+  <span class="hljs-attr">addKubernetesRole</span>: {
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+    <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/auth/{{mount_point}}{{^mount_point}}kubernetes{{/mount_point}}/role/{{ role_name }}&#x27;</span>,
+    <span class="hljs-attr">schema</span>: {
+      <span class="hljs-attr">req</span>: {
+        <span class="hljs-attr">name</span>: {
+          <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;string&#x27;</span>,
+        },
+        <span class="hljs-attr">bound_cidrs</span>: {
+          <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;array&#x27;</span>,
+        },
+        <span class="hljs-attr">bound_service_account_names</span>: {
+          <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;array&#x27;</span>,
+        },
+        <span class="hljs-attr">bound_service_account_namespaces</span>: {
+          <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;array&#x27;</span>,
+        },
+        <span class="hljs-attr">ttl</span>: {
+          <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;integer&#x27;</span>,
+        },
+        <span class="hljs-attr">max_ttl</span>: {
+          <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;integer&#x27;</span>,
+        },
+        <span class="hljs-attr">policies</span>: {
+          <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;array&#x27;</span>,
+        },
+        <span class="hljs-attr">num_uses</span>: {
+          <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;integer&#x27;</span>,
+        },
+        <span class="hljs-attr">period</span>: {
+          <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;integer&#x27;</span>,
+        },
+      },
+    },
+  },
+  <span class="hljs-attr">getKubernetesRole</span>: {
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
+    <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/auth/{{mount_point}}{{^mount_point}}kubernetes{{/mount_point}}/role/{{ role_name }}&#x27;</span>,
+    <span class="hljs-attr">schema</span>: {
+      <span class="hljs-attr">res</span>: kubernetesRoleResponse,
+    },
+  },
+  <span class="hljs-attr">deleteKubernetesRole</span>: {
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;DELETE&#x27;</span>,
+    <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/auth/{{mount_point}}{{^mount_point}}kubernetes{{/mount_point}}/role/{{ role_name }}&#x27;</span>,
   },
   <span class="hljs-attr">health</span>: {
     <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
