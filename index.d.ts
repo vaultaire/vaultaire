@@ -759,4 +759,4 @@ export namespace Vaultaire {
 }
 
 declare function NodeVault(options?: Vaultaire.VaultOptions): Vaultaire.client;
-export default NodeVault
+export default NodeVault;
