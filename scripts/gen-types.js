@@ -31,10 +31,10 @@ for (const commandName of commandNames) {
 }
 
 Promise.all(compilePromises).then((types) => {
-    const typeString = types.join('').replace(/export /g, '')
+    const typeString = types.join('')
     const content = `
     
-declare namespace NodeVault {
+export namespace Vaultaire {
     ${typeString}
     interface Option {
         [p: string]: unknown;
@@ -75,8 +75,8 @@ declare namespace NodeVault {
     }
 }
 
-declare function NodeVault(options?: NodeVault.VaultOptions): NodeVault.client;
-export = NodeVault;
+declare function NodeVault(options?: Vaultaire.VaultOptions): Vaultaire.client;
+export default NodeVault;
 
 `
     fs.writeFileSync('./index.d.ts', format(content, DEFAULT_OPTIONS))

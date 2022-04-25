@@ -1,5 +1,5 @@
-declare namespace NodeVault {
-  interface AddApproleRoleReq {
+export namespace Vaultaire {
+  export interface AddApproleRoleReq {
     bind_secret_id?: boolean;
     bound_cidr_list?: string;
     policies?: string;
@@ -11,7 +11,7 @@ declare namespace NodeVault {
     period?: number;
     [k: string]: unknown;
   }
-  interface AddTokenRoleReq {
+  export interface AddTokenRoleReq {
     allowed_policies?: string;
     disallowed_policies?: string;
     orphan?: boolean;
@@ -21,12 +21,12 @@ declare namespace NodeVault {
     explicit_max_ttl?: number;
     [k: string]: unknown;
   }
-  interface ApproleLoginReq {
+  export interface ApproleLoginReq {
     role_id: string;
     secret_id?: string;
     [k: string]: unknown;
   }
-  interface ApproleLoginRes {
+  export interface ApproleLoginRes {
     auth?: {
       client_token?: string;
       policies?: string[];
@@ -47,7 +47,7 @@ declare namespace NodeVault {
     lease_id?: string;
     [k: string]: unknown;
   }
-  interface ApproleLoginRes {
+  export interface ApproleLoginRes {
     auth?: {
       client_token?: string;
       policies?: string[];
@@ -68,11 +68,11 @@ declare namespace NodeVault {
     lease_id?: string;
     [k: string]: unknown;
   }
-  interface ApproleSecretAccessorLookupReq {
+  export interface ApproleSecretAccessorLookupReq {
     secret_id_accessor: string;
     [k: string]: unknown;
   }
-  interface ApproleLoginRes {
+  export interface ApproleLoginRes {
     auth?: {
       client_token?: string;
       policies?: string[];
@@ -93,15 +93,15 @@ declare namespace NodeVault {
     lease_id?: string;
     [k: string]: unknown;
   }
-  interface ApproleSecretDestroyReq {
+  export interface ApproleSecretDestroyReq {
     secret_id: string;
     [k: string]: unknown;
   }
-  interface ApproleSecretLookupReq {
+  export interface ApproleSecretLookupReq {
     secret_id: string;
     [k: string]: unknown;
   }
-  interface ApproleLoginRes {
+  export interface ApproleLoginRes {
     auth?: {
       client_token?: string;
       policies?: string[];
@@ -122,7 +122,7 @@ declare namespace NodeVault {
     lease_id?: string;
     [k: string]: unknown;
   }
-  interface AwsIamLoginReq {
+  export interface AwsIamLoginReq {
     role: string;
     iam_http_request_method: string;
     iam_request_url: string;
@@ -130,7 +130,7 @@ declare namespace NodeVault {
     iam_request_headers: string;
     [k: string]: unknown;
   }
-  interface AwsIamLoginRes {
+  export interface AwsIamLoginRes {
     auth: {
       client_token?: string;
       policies?: string[];
@@ -143,12 +143,12 @@ declare namespace NodeVault {
     };
     [k: string]: unknown;
   }
-  interface GcpLoginReq {
+  export interface GcpLoginReq {
     role: string;
     jwt: string;
     [k: string]: unknown;
   }
-  interface AwsIamLoginRes {
+  export interface AwsIamLoginRes {
     auth: {
       client_token?: string;
       policies?: string[];
@@ -161,12 +161,12 @@ declare namespace NodeVault {
     };
     [k: string]: unknown;
   }
-  interface GenerateRootInitReq {
+  export interface GenerateRootInitReq {
     otp?: string;
     pgp_key?: string;
     [k: string]: unknown;
   }
-  interface GenerateRootInitRes {
+  export interface GenerateRootInitRes {
     started: boolean;
     nonce: string;
     progress: number;
@@ -175,7 +175,7 @@ declare namespace NodeVault {
     complete: boolean;
     [k: string]: unknown;
   }
-  interface GenerateRootStatusRes {
+  export interface GenerateRootStatusRes {
     started: boolean;
     nonce: string;
     progress: number;
@@ -184,12 +184,12 @@ declare namespace NodeVault {
     complete: boolean;
     [k: string]: unknown;
   }
-  interface GenerateRootUpdateReq {
+  export interface GenerateRootUpdateReq {
     key: string;
     nonce: string;
     [k: string]: unknown;
   }
-  interface GenerateRootUpdateRes {
+  export interface GenerateRootUpdateRes {
     started: boolean;
     nonce: string;
     progress: number;
@@ -199,7 +199,7 @@ declare namespace NodeVault {
     encoded_root_token?: string;
     [k: string]: unknown;
   }
-  interface ApproleLoginRes {
+  export interface ApproleLoginRes {
     auth?: {
       client_token?: string;
       policies?: string[];
@@ -220,7 +220,7 @@ declare namespace NodeVault {
     lease_id?: string;
     [k: string]: unknown;
   }
-  interface ApproleLoginRes {
+  export interface ApproleLoginRes {
     auth?: {
       client_token?: string;
       policies?: string[];
@@ -241,12 +241,12 @@ declare namespace NodeVault {
     lease_id?: string;
     [k: string]: unknown;
   }
-  interface GetApproleRoleSecretReq {
+  export interface GetApproleRoleSecretReq {
     metadata?: string;
     cidr_list?: string[];
     [k: string]: unknown;
   }
-  interface ApproleLoginRes {
+  export interface ApproleLoginRes {
     auth?: {
       client_token?: string;
       policies?: string[];
@@ -267,11 +267,11 @@ declare namespace NodeVault {
     lease_id?: string;
     [k: string]: unknown;
   }
-  interface GithubLoginReq {
+  export interface GithubLoginReq {
     token: string;
     [k: string]: unknown;
   }
-  interface AwsIamLoginRes {
+  export interface AwsIamLoginRes {
     auth: {
       client_token?: string;
       policies?: string[];
@@ -284,7 +284,7 @@ declare namespace NodeVault {
     };
     [k: string]: unknown;
   }
-  interface HealthQuery {
+  export interface HealthQuery {
     standbyok?: boolean;
     activecode?: number;
     standbycode?: number;
@@ -292,7 +292,7 @@ declare namespace NodeVault {
     uninitcode?: number;
     [k: string]: unknown;
   }
-  interface HealthRes {
+  export interface HealthRes {
     cluster_id?: string;
     cluster_name?: string;
     version?: string;
@@ -302,7 +302,7 @@ declare namespace NodeVault {
     initialized?: boolean;
     [k: string]: unknown;
   }
-  interface InitReq {
+  export interface InitReq {
     secret_shares?: number;
     secret_threshold?: number;
     recovery_shares?: number;
@@ -311,17 +311,17 @@ declare namespace NodeVault {
     required?: ["secret_shares", "secret_threshold"];
     [k: string]: unknown;
   }
-  interface InitRes {
+  export interface InitRes {
     keys: string[];
     root_token: string;
     [k: string]: unknown;
   }
-  interface KubernetesLoginReq {
+  export interface KubernetesLoginReq {
     role: string;
     jwt: string;
     [k: string]: unknown;
   }
-  interface AwsIamLoginRes {
+  export interface AwsIamLoginRes {
     auth: {
       client_token?: string;
       policies?: string[];
@@ -334,11 +334,11 @@ declare namespace NodeVault {
     };
     [k: string]: unknown;
   }
-  interface LdapLoginReq {
+  export interface LdapLoginReq {
     password: string;
     [k: string]: unknown;
   }
-  interface AwsIamLoginRes {
+  export interface AwsIamLoginRes {
     auth: {
       client_token?: string;
       policies?: string[];
@@ -351,17 +351,17 @@ declare namespace NodeVault {
     };
     [k: string]: unknown;
   }
-  interface LeaderRes {
+  export interface LeaderRes {
     ha_enabled?: boolean;
     is_self?: boolean;
     leader_address?: string;
     [k: string]: unknown;
   }
-  interface OktaLoginReq {
+  export interface OktaLoginReq {
     password: string;
     [k: string]: unknown;
   }
-  interface AwsIamLoginRes {
+  export interface AwsIamLoginRes {
     auth: {
       client_token?: string;
       policies?: string[];
@@ -374,11 +374,11 @@ declare namespace NodeVault {
     };
     [k: string]: unknown;
   }
-  interface RadiusLoginReq {
+  export interface RadiusLoginReq {
     password: string;
     [k: string]: unknown;
   }
-  interface AwsIamLoginRes {
+  export interface AwsIamLoginRes {
     auth: {
       client_token?: string;
       policies?: string[];
@@ -391,36 +391,36 @@ declare namespace NodeVault {
     };
     [k: string]: unknown;
   }
-  interface RenewReq {
+  export interface RenewReq {
     lease_id: string;
     increment?: number;
     [k: string]: unknown;
   }
-  interface RenewRes {
+  export interface RenewRes {
     lease_id?: string;
     renewable?: boolean;
     lease_duration?: number;
     [k: string]: unknown;
   }
-  interface RevokeReq {
+  export interface RevokeReq {
     lease_id: string;
     [k: string]: unknown;
   }
-  interface StatusRes {
+  export interface StatusRes {
     sealed: boolean;
     t: number;
     n: number;
     progress: number;
     [k: string]: unknown;
   }
-  interface TokenAccessorsRes {
+  export interface TokenAccessorsRes {
     data: {
       keys?: string[];
       [k: string]: unknown;
     };
     [k: string]: unknown;
   }
-  interface TokenCreateReq {
+  export interface TokenCreateReq {
     id?: string;
     policies?: string[];
     meta?: {
@@ -435,7 +435,7 @@ declare namespace NodeVault {
     num_uses?: number;
     [k: string]: unknown;
   }
-  interface AwsIamLoginRes {
+  export interface AwsIamLoginRes {
     auth: {
       client_token?: string;
       policies?: string[];
@@ -448,7 +448,7 @@ declare namespace NodeVault {
     };
     [k: string]: unknown;
   }
-  interface TokenCreateOrphanReq {
+  export interface TokenCreateOrphanReq {
     id?: string;
     policies?: string[];
     meta?: {
@@ -463,7 +463,7 @@ declare namespace NodeVault {
     num_uses?: number;
     [k: string]: unknown;
   }
-  interface AwsIamLoginRes {
+  export interface AwsIamLoginRes {
     auth: {
       client_token?: string;
       policies?: string[];
@@ -476,7 +476,7 @@ declare namespace NodeVault {
     };
     [k: string]: unknown;
   }
-  interface TokenCreateRoleReq {
+  export interface TokenCreateRoleReq {
     id?: string;
     policies?: string[];
     meta?: {
@@ -491,7 +491,7 @@ declare namespace NodeVault {
     num_uses?: number;
     [k: string]: unknown;
   }
-  interface AwsIamLoginRes {
+  export interface AwsIamLoginRes {
     auth: {
       client_token?: string;
       policies?: string[];
@@ -504,11 +504,11 @@ declare namespace NodeVault {
     };
     [k: string]: unknown;
   }
-  interface TokenLookupReq {
+  export interface TokenLookupReq {
     token: string;
     [k: string]: unknown;
   }
-  interface TokenLookupRes {
+  export interface TokenLookupRes {
     data: {
       id?: string;
       policies?: string[];
@@ -522,11 +522,11 @@ declare namespace NodeVault {
     };
     [k: string]: unknown;
   }
-  interface TokenLookupAccessorReq {
+  export interface TokenLookupAccessorReq {
     accessor: string;
     [k: string]: unknown;
   }
-  interface TokenLookupAccessorRes {
+  export interface TokenLookupAccessorRes {
     data: {
       id?: string;
       policies?: string[];
@@ -540,7 +540,7 @@ declare namespace NodeVault {
     };
     [k: string]: unknown;
   }
-  interface TokenLookupSelfRes {
+  export interface TokenLookupSelfRes {
     data: {
       id?: string;
       policies?: string[];
@@ -554,12 +554,12 @@ declare namespace NodeVault {
     };
     [k: string]: unknown;
   }
-  interface TokenRenewReq {
+  export interface TokenRenewReq {
     token: string;
     increment?: number | string;
     [k: string]: unknown;
   }
-  interface AwsIamLoginRes {
+  export interface AwsIamLoginRes {
     auth: {
       client_token?: string;
       policies?: string[];
@@ -572,11 +572,11 @@ declare namespace NodeVault {
     };
     [k: string]: unknown;
   }
-  interface TokenRenewSelfReq {
+  export interface TokenRenewSelfReq {
     increment?: number | string;
     [k: string]: unknown;
   }
-  interface AwsIamLoginRes {
+  export interface AwsIamLoginRes {
     auth: {
       client_token?: string;
       policies?: string[];
@@ -589,51 +589,51 @@ declare namespace NodeVault {
     };
     [k: string]: unknown;
   }
-  interface TokenRevokeReq {
+  export interface TokenRevokeReq {
     token: string;
     [k: string]: unknown;
   }
-  interface TokenRevokeAccessorReq {
+  export interface TokenRevokeAccessorReq {
     accessor: string;
     [k: string]: unknown;
   }
-  interface TokenRevokeOrphanReq {
+  export interface TokenRevokeOrphanReq {
     token: string;
     [k: string]: unknown;
   }
-  interface TokenRolesRes {
+  export interface TokenRolesRes {
     data: {
       keys?: string[];
       [k: string]: unknown;
     };
     [k: string]: unknown;
   }
-  interface UnsealReq {
+  export interface UnsealReq {
     key?: string;
     reset?: boolean;
     migrate?: boolean;
     [k: string]: unknown;
   }
-  interface StatusRes {
+  export interface StatusRes {
     sealed: boolean;
     t: number;
     n: number;
     progress: number;
     [k: string]: unknown;
   }
-  interface UnwrapReq {
+  export interface UnwrapReq {
     token?: string;
     [k: string]: unknown;
   }
-  interface UpdateApproleRoleIdReq {
+  export interface UpdateApproleRoleIdReq {
     role_id: string;
     [k: string]: unknown;
   }
-  interface UserpassLoginReq {
+  export interface UserpassLoginReq {
     password: string;
     [k: string]: unknown;
   }
-  interface AwsIamLoginRes {
+  export interface AwsIamLoginRes {
     auth: {
       client_token?: string;
       policies?: string[];
@@ -758,5 +758,5 @@ declare namespace NodeVault {
   }
 }
 
-declare function NodeVault(options?: NodeVault.VaultOptions): NodeVault.client;
-export = NodeVault;
+declare function NodeVault(options?: Vaultaire.VaultOptions): Vaultaire.client;
+export default NodeVault
