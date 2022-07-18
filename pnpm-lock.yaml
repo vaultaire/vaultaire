@@ -7,7 +7,7 @@ specifiers:
   dirty-chai: 2.0.1
   docco: 0.9.1
   eslint: 8.18.0
-  husky: 7.0.4
+  husky: 8.0.1
   mocha: 10.0.0
   mustache: 4.2.0
   nyc: 15.1.0
@@ -26,7 +26,7 @@ devDependencies:
   dirty-chai: 2.0.1_chai@4.3.6
   docco: 0.9.1
   eslint: 8.18.0
-  husky: 7.0.4
+  husky: 8.0.1
   mocha: 10.0.0
   nyc: 15.1.0
   sinon: 13.0.2
@@ -1068,9 +1068,9 @@ packages:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
     dev: true
 
-  /husky/7.0.4:
-    resolution: {integrity: sha512-vbaCKN2QLtP/vD4yvs6iz6hBEo6wkSzs8HpRah1Z6aGmF2KW5PdYuAd7uX5a+OyBZHBhd+TFLqgjUgytQr4RvQ==}
-    engines: {node: '>=12'}
+  /husky/8.0.1:
+    resolution: {integrity: sha512-xs7/chUH/CKdOCs7Zy0Aev9e/dKOMZf3K1Az1nar3tzlv0jfqnYtu235bstsWTmXOR0EfINrPa97yy4Lz6RiKw==}
+    engines: {node: '>=14'}
     hasBin: true
     dev: true
 
