@@ -18,7 +18,7 @@
     "precommit": "node scripts/write-features.js && git add features.md"
   },
   "dependencies": {
-    "axios": "0.27.1",
+    "axios": "0.27.2",
     "debug": "4.3.4",
     "mustache": "4.2.0",
     "tv4": "1.3.0"
