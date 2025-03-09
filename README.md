@@ -5,6 +5,9 @@
 
 A client for the HTTP API of HashiCorp's [Vault] written for Node.js. Maintained fork of the [node-vault](https://github.com/nodevault/node-vault) project.
 
+## SUNSET
+
+There are better options https://developer.hashicorp.com/vault/api-docs/libraries#node-js
 
 ## Install
 make sure to use node.js version >= 12
