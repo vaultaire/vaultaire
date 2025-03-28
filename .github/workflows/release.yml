@@ -23,7 +23,7 @@ jobs:
       with:
         ref: ${{ github.event.inputs.ref }}
     - name: Setup PNPM
-      uses: pnpm/action-setup@v2.2.2
+      uses: pnpm/action-setup@v2.4.1
       with:
         version: 6
         run_install: "true"
