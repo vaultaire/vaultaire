@@ -14,7 +14,7 @@ jobs:
         node-version: [12.x, 14.x, 16.x, 18.x]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup PNPM
       uses: pnpm/action-setup@v2.2.2
       with:
@@ -50,7 +50,7 @@ jobs:
     if: ${{ github.event_name == 'push' }}
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup PNPM
         uses: pnpm/action-setup@v2.2.2
         with:
